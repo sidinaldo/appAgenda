@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Voltar</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="auto-scroll">
+  <ion-card>
+    <ion-card-header>
+      <p text-center class="oleo-script">{{firstParam.data.dia}}/{{firstParam.data.mes}}/{{firstParam.data.ano}} - {{firstParam.hora}}hs</p>
+      <label text-center class="lista-jogo-title" >{{firstParam.local}}</label>
+
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{firstParam.mandante}} {{firstParam.placar.mandante}} X {{firstParam.placar.visitante}} {{firstParam.visitante}}</p>
+      <ion-list *ngFor="let item of firstParam.jogadores">
+        <ion-icon name="football" color="blue"></ion-icon>
+        {{item.nome}}: {{item.gols}}
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-content padding class="auto-scroll">
+  <ion-grid fixed>
+    <ion-row align-items-center justify-content-center>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <form [formGroup]="form">      
+          <h1 text-center class="oleo-script">Cadastrar jogo</h1>
+          <ion-list no-lines>
+            <ion-item>
+              <ion-input type="text" placeholder="Mandante" maxlength="140" formControlName="mandante"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Visitante" maxlength="20" formControlName="visitante"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Local" maxlength="20" formControlName="local"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="time" placeholder="Hora" maxlength="20" formControlName="hora"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="placar" maxlength="20" formControlName="placar"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="jogadores" formControlName="jogadores"></ion-input>
+              <button ion-button block outline [disabled]="!form.valid" color="blue">+</button>
+            </ion-item>
+          </ion-list>
+          <button ion-button block large outline [disabled]="!form.valid" color="blue">Entrar</button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- <ion-footer >
+  <ion-toolbar text-center color="blue">
+    <ion-buttons>
+      <button small ion-button block (click)="goToSignup()">
+        <small>Ainda não tem conta?&nbsp;<strong>Cadastre-se</strong></small>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->

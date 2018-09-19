@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Voltar</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="auto-scroll">
+  <ion-grid fixed>
+    <ion-row align-items-center justify-content-center *ngFor="let item of lista">
+      <ion-card>
+        <ion-card-header>
+        <label  text-center class="oleo-script" >{{item.data.dia}}/{{item.data.mes}}/{{item.data.ano}} - {{item.hora}}hs</label>
+        </ion-card-header>
+        <ion-list>
+          <button ion-item (click)="jogo(item)">
+            <ion-icon name="football" color="blue"></ion-icon>
+            {{item.mandante}} {{item.placar.mandante}} X {{item.placar.visitante}} {{item.visitante}} 
+          </button>
+        </ion-list>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!-- <ion-footer >
+  <ion-toolbar text-center color="blue">
+    <ion-buttons>
+      <button small ion-button block (click)="goToSignup()">
+        <small>Ainda não tem conta?&nbsp;<strong>Cadastre-se</strong></small>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer> -->
