@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AgendaPage } from '../agenda/agenda';
+import { CadastrarJogo } from '../jogo/cadastrar/cadastrarjogo';
+
 
 
 @Component({
@@ -10,12 +12,12 @@ import { AgendaPage } from '../agenda/agenda';
 })
 export class HomePage {
 
-  public photosTab: any;
+  public tabHome: any;
   public profileTab: any;
   public user: string;
  
   constructor(public navCtrl: NavController) {
-    this.photosTab = LoginPage;
+    this.tabHome = LoginPage;
     this.profileTab = LoginPage;
   }
 
@@ -25,5 +27,8 @@ export class HomePage {
 
   agenda(){
     this.navCtrl.push(AgendaPage);
+  }
+  cadastrarJogo(){
+    this.navCtrl.push(CadastrarJogo);
   }
 }

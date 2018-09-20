@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="blue">    
+  <ion-toolbar color="blue">
     <ion-title text-center class="oleo-script">Olho D'água Futebol Clube {{ user }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="showSendPhoto()">
@@ -9,11 +9,10 @@
   </ion-toolbar>
 </ion-header>
 <br>
-<ion-content padding class="auto-scroll">  
+<ion-content padding class="auto-scroll">
   <ion-card>
     <button ion-item clear large (click)="agenda()">
       <ion-icon ios="ios-calendar" md="md-calendar" item-start></ion-icon>
-      <!-- <ion-icon name="beer" item-start></ion-icon> -->
       Agenda
     </button>
   </ion-card>
@@ -21,7 +20,6 @@
   <ion-card>
     <button ion-item>
       <ion-icon ios="ios-pie-outline" md="md-pie" item-start></ion-icon>
-      <!-- <ion-icon name="cart" item-start></ion-icon> -->
       Desempenho
     </button>
   </ion-card>
@@ -29,16 +27,13 @@
   <ion-card>
     <button ion-item>
       <ion-icon ios="ios-football" md="md-football" item-start></ion-icon>
-      <!-- <ion-icon name="paw" item-start></ion-icon> -->
       Artilharia
     </button>
   </ion-card>
   <br>
   <ion-card>
-    <button ion-item >
+    <button ion-item>
       <ion-icon ios="ios-construct-outline" md="md-construct" item-start></ion-icon>
-      <!-- <ion-icon ios="ios-football" md="md-football" item-start></ion-icon> -->
-      <!-- <ion-icon name="paw" item-start></ion-icon> -->
       Configuração
     </button>
   </ion-card>
@@ -49,14 +44,19 @@
       Login
     </button>
   </ion-card>
+  <br>
+  <ion-card>
+    <button ion-item (click)="cadastrarJogo()">
+      <ion-icon ios="ios-add-circle" md="md-add-circle" item-start></ion-icon>
+      Cadastrar Jogo
+    </button>    
+  </ion-card>
 </ion-content>
-<!-- <ion-content class="auto-scroll"> -->
+<!-- <ion-content class="auto-scroll">
   <ion-tabs>
-    <ion-tab tabIcon="home" ></ion-tab>
-    <ion-tab tabIcon="search"  [root]="profileTab"></ion-tab>
-    <ion-tab tabIcon="add-circle" class="add-tab-icon" [root]="profileTab"></ion-tab>
-    <ion-tab tabIcon="heart" ></ion-tab>
-    <ion-tab tabIcon="contact" [root]="profileTab"></ion-tab>
-  </ion-tabs>
-  
-<!-- </ion-content> -->
+    <ion-tab tabIcon="water" tabTitle="Water" [root]="tab1"></ion-tab>
+    <ion-tab tabIcon="leaf" tabTitle="Life" [root]="tab2"></ion-tab>
+    <ion-tab tabIcon="flame" tabTitle="Fire" [root]="tab3"></ion-tab>
+    <ion-tab tabIcon="magnet" tabTitle="Force" [root]="tab4"></ion-tab>
+  </ion-tabs>`
+</ion-content> -->

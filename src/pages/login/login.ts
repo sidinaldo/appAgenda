@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoadingController, NavController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { HomePage } from '../home/home';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-login',
@@ -12,7 +13,7 @@ export class LoginPage {
 
   constructor(
     private fb: FormBuilder,
-    //private afAuth: AngularFireAuth,
+    private afAuth: AngularFireAuth,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
     private alertCtrl: AlertController) {
@@ -37,27 +38,24 @@ export class LoginPage {
   }
 
   submit() {
-    //let loader = this.loadingCtrl.create({ content: "Autenticando..." });
-    //loader.present();
+    let loader = this.loadingCtrl.create({ content: "Autenticando..." });
+    loader.present();
 
-    // this.afAuth.auth
-    //   .signInWithEmailAndPassword(this.form.controls['email'].value, this.form.controls['password'].value)
-    //   .then(() => {
-    //     loader.dismiss();
+    this.afAuth.auth
+      //.signInWithEmailAndPassword(this.form.controls['email'].value, this.form.controls['password'].value)
+      .signInWithEmailAndPassword('sidinaldobarbosa@gmail.com', 'forense@231619')
+      .then(() => {
+        loader.dismiss();
          this.navCtrl.setRoot(HomePage);
-    //   })
-    //   .catch(() => {
-    //     loader.dismiss();
-    //     let alert = this.alertCtrl.create({
-    //       title: 'Autenticação Inválida',
-    //       subTitle: 'Usuário ou senha incorretos.',
-    //       buttons: ['OK']
-    //     });
-    //     alert.present();
-    //   });
-  }
-
-  goToSignup() {
-    //this.navCtrl.setRoot(SignupPage);
+      })
+      .catch(() => {
+        loader.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Autenticação Inválida',
+          subTitle: 'Usuário ou senha incorretos.',
+          buttons: ['OK']
+        });
+        alert.present();
+      });
   }
 }

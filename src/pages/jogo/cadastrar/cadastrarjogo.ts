@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoadingController, NavController, AlertController } from 'ionic-angular';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -9,12 +9,16 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CadastrarJogo {
   public form: FormGroup;
-
+  public listJogadores: FormArray;
+  public jogador = {
+    nome: null,
+    gol: null
+  }
   constructor(
     private fb: FormBuilder,
     //private afAuth: AngularFireAuth,
     private loadingCtrl: LoadingController,
-    ) {
+  ) {
     this.form = this.fb.group({
       mandante: ['', Validators.compose([
         Validators.minLength(5),
@@ -36,11 +40,15 @@ export class CadastrarJogo {
       ])],
       situacao: ['', Validators.compose([
       ])],
-      placar: ['', Validators.compose([
+      placarmandante: ['', Validators.compose([
         Validators.required
       ])],
-      jogadores: ['', Validators.compose([
-      ])]
+      placarvisitante: ['', Validators.compose([
+        Validators.required
+      ])],
+      observacao: ['', Validators.compose([
+      ])],
+      jogadores: new FormArray([])
     });
   }
 
@@ -49,7 +57,14 @@ export class CadastrarJogo {
     loader.present();
   }
 
-  goToSignup() {
-    //this.navCtrl.setRoot(SignupPage);
+  AddJogador() {
+    (<FormArray>this.form.controls['jogadores']).push(
+      new FormGroup({
+        nome: new FormControl('', Validators.required),
+        gol: new FormControl('', Validators.required)
+      })
+    )
+
+    console.log(this.form)
   }
 }
