@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { LoadingController, NavController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2/database";
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase';
+import { HomePage } from '../../home/home';
+
 
 
 @Component({
@@ -9,16 +14,27 @@ import { Validators, FormBuilder, FormGroup, FormArray, FormControl } from '@ang
 })
 export class CadastrarJogo {
   public form: FormGroup;
-  public listJogadores: FormArray;
+  public jogos: FirebaseObjectObservable<any>;
+  public user: string = '';
   public jogador = {
     nome: null,
     gol: null
   }
   constructor(
     private fb: FormBuilder,
-    //private afAuth: AngularFireAuth,
     private loadingCtrl: LoadingController,
+    private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth,
+    private alertCtrl: AlertController,
+    private navCtrl: NavController,
   ) {
+    this.jogos = this.db.list('/jogos');
+    afAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = user.email
+      }
+    });
+
     this.form = this.fb.group({
       mandante: ['', Validators.compose([
         Validators.minLength(5),
@@ -38,7 +54,10 @@ export class CadastrarJogo {
       hora: ['', Validators.compose([
         Validators.minLength(2),
       ])],
-      situacao: ['', Validators.compose([
+      data: ['', Validators.compose([
+        Validators.minLength(2),
+      ])],
+      situacao: [false, Validators.compose([
       ])],
       placarmandante: ['', Validators.compose([
         Validators.required
@@ -53,9 +72,42 @@ export class CadastrarJogo {
   }
 
   submit() {
-    let loader = this.loadingCtrl.create({ content: "Autenticando..." });
+    let loader = this.loadingCtrl.create({ content: "Cadastrando..." });
     loader.present();
+    this.afAuth.authState.subscribe(user => {
+      if (!user) {
+        loader.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Ops, algo deu errado',
+          subTitle: 'Você não tem permissão.',
+          buttons: ['OK']
+        });
+        alert.present();
+        this.navCtrl.setRoot(HomePage);
+      } else {
+        this.jogos.push(this.form.value)
+          .then(() => {
+            loader.dismiss();
+            this.form.reset();
+          })
+          .catch(() => {
+            loader.dismiss();
+            let alert = this.alertCtrl.create({
+              title: 'Ops, algo deu errado',
+              subTitle: 'Não foi possível cadastrar.',
+              buttons: ['OK']
+            });
+            alert.present();
+          });
+      }
+    });
   }
+
+  focus() {
+    this.form.controls['mandante'].patchValue("Olho D'água");
+    this.form.controls['visitante'].patchValue("Olho D'água");
+  }
+
 
   AddJogador() {
     (<FormArray>this.form.controls['jogadores']).push(
@@ -64,7 +116,5 @@ export class CadastrarJogo {
         gol: new FormControl('', Validators.required)
       })
     )
-
-    console.log(this.form)
   }
 }

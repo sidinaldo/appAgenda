@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AgendaPage } from '../agenda/agenda';
 import { CadastrarJogo } from '../jogo/cadastrar/cadastrarjogo';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 
@@ -16,9 +17,9 @@ export class HomePage {
   public profileTab: any;
   public user: string;
  
-  constructor(public navCtrl: NavController) {
-    this.tabHome = LoginPage;
-    this.profileTab = LoginPage;
+  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth,) {
+    // this.tabHome = LoginPage;
+    // this.profileTab = LoginPage;
   }
 
   autentication(){
