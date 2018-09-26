@@ -4,6 +4,7 @@ import { LoginPage } from '../login/login';
 import { AgendaPage } from '../agenda/agenda';
 import { CadastrarJogo } from '../jogo/cadastrar/cadastrarjogo';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { JogadorPage } from '../jogador/jogador';
 
 
 
@@ -31,5 +32,8 @@ export class HomePage {
   }
   cadastrarJogo(){
     this.navCtrl.push(CadastrarJogo);
+  }
+  cadastrarJogador(){
+    this.navCtrl.push(JogadorPage);
   }
 }

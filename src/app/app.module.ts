@@ -13,6 +13,8 @@ import { LoginPage } from '../pages/login/login';
 import { AgendaPage } from '../pages/agenda/agenda';
 import { ConsultarJogo } from '../pages/jogo/consultar/consultarjogo';
 import { CadastrarJogo } from '../pages/jogo/cadastrar/cadastrarjogo';
+import { JogadorPage } from '../pages/jogador/jogador';
+
 
 
 export const environment = {
@@ -33,7 +35,8 @@ export const environment = {
     LoginPage,
     AgendaPage,
     ConsultarJogo,
-    CadastrarJogo
+    CadastrarJogo,
+    JogadorPage
     
   ],
   imports: [
@@ -50,7 +53,8 @@ export const environment = {
     LoginPage,
     AgendaPage,
     ConsultarJogo,
-    CadastrarJogo  
+    CadastrarJogo,
+    JogadorPage
   ],
   providers: [
     StatusBar,

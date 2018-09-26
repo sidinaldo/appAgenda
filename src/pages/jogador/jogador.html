@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Voltar</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="auto-scroll">
+  <ion-grid fixed>
+    <ion-row align-items-center justify-content-center>
+      <ion-col col-12 col-sm-12 col-md-6>
+        <form [formGroup]="form">
+          <br><br>
+          <ion-list no-lines>
+            <ion-item>
+              <ion-input type="text" placeholder="Nome" maxlength="140" formControlName="nome"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input type="text" placeholder="Posição" maxlength="50" formControlName="posicao"></ion-input>
+            </ion-item>
+          </ion-list>
+          <button ion-button block large outline (click)="submit()" color="blue">Cadastrar</button>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row align-items-center justify-content-center *ngFor="let item of lista">
+      <ion-col col-12 col-sm-12 col-md-6 text-center>
+        {{item.nome}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -6,15 +6,15 @@
 
 <ion-content padding class="auto-scroll">
   <ion-grid fixed>
-    <ion-row align-items-center justify-content-center *ngFor="let item of lista">
+    <ion-row align-items-center justify-content-center *ngFor="let item of jogos">
       <ion-card>
         <ion-card-header>
-        <label  text-center class="oleo-script" >{{item.data.dia}}/{{item.data.mes}}/{{item.data.ano}} - {{item.hora}}hs</label>
+        <label  text-center class="oleo-script" >{{item.data | date:'shortDate'}} - {{item.hora}}hs</label>
         </ion-card-header>
         <ion-list>
-          <button ion-item (click)="jogo(item)">
+          <button ion-item >
             <ion-icon name="football" color="blue"></ion-icon>
-            {{item.mandante}} {{item.placar.mandante}} X {{item.placar.visitante}} {{item.visitante}} 
+            {{item.mandante}} {{item.placarmandante}} X {{item.placarvisitante}} {{item.visitante}} 
           </button>
         </ion-list>
       </ion-card>
