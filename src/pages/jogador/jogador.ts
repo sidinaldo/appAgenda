@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { LoadingController, NavController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { AngularFireDatabase, AngularFireObject, AngularFireList, FirebaseObjectObservable  } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
-
 
 
 @Component({
@@ -13,8 +12,8 @@ import { HomePage } from '../home/home';
 })
 export class JogadorPage {
   public form: FormGroup;
-  public jogadores: FirebaseObjectObservable<any>;
   public lista: any;
+  public jogadores: AngularFireList<any>;
 
   constructor(
     private fb: FormBuilder,
@@ -23,6 +22,7 @@ export class JogadorPage {
     private db: AngularFireDatabase,
     private afAuth: AngularFireAuth,
     private alertCtrl: AlertController) {
+    this.jogadores = this.db.list('jogadores');
     this.form = this.fb.group({
       nome: ['', Validators.compose([
         Validators.minLength(5),
@@ -35,16 +35,8 @@ export class JogadorPage {
         Validators.required
       ])]
     });
-    
 
-    
-    console.log(this.jogadores)
     this.consultar();
-    // afAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     this.user = user.email
-    //   }
-    // });
   }
 
   submit() {
@@ -61,22 +53,24 @@ export class JogadorPage {
         alert.present();
         this.navCtrl.setRoot(HomePage);
       } else {
-        this.jogadores = this.db.list('jogadores');
-       this.jogadores.push(this.form.value).then(() => {
-          loader.dismiss();
-          this.form.reset();
-        }).catch(() => {
-          loader.dismiss();
-          let alert = this.alertCtrl.create({
-            title: 'Ops, algo deu errado',
-            subTitle: 'Não foi possível cadastrar.',
-            buttons: ['OK']
-          });
-          alert.present();
-        });
-        this.jogadores.snapshotChanges();
-        this.jogadores.subscribe();       
-          
+        this.jogadores.push(this.form.value)
+          .then(() => {
+            this.jogadores.snapshotChanges().subscribe();
+            loader.dismiss();
+            this.form.reset();
+          })
+        // .catch(() => {
+        //   loader.dismiss();
+        //   let alert = this.alertCtrl.create({
+        //     title: 'Ops, algo deu errado',
+        //     subTitle: 'Não foi possível cadastrar.',
+        //     buttons: ['OK']
+        //   });
+        //   alert.present();
+        // });
+        // this.jogadores.snapshotChanges();
+        // this.jogadores.subscribe();
+
       }
     });
   }

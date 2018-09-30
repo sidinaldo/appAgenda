@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { LoadingController, NavController, AlertController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
-import { AngularFireDatabase, FirebaseObjectObservable } from "angularfire2/database";
+import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
 import { HomePage } from '../../home/home';
-
-
 
 @Component({
   selector: 'page-cadastrarjogo',
@@ -14,7 +11,7 @@ import { HomePage } from '../../home/home';
 })
 export class CadastrarJogo {
   public form: FormGroup;
-  public jogos: FirebaseObjectObservable<any>;
+  public jogos: AngularFireList<any>;
   public user: string = '';
   public jogador = {
     nome: null,
@@ -28,7 +25,7 @@ export class CadastrarJogo {
     private alertCtrl: AlertController,
     private navCtrl: NavController,
   ) {
-    this.jogos = this.db.list('/jogos');
+    this.jogos = this.db.list('jogos');
     afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user.email
@@ -85,20 +82,13 @@ export class CadastrarJogo {
         alert.present();
         this.navCtrl.setRoot(HomePage);
       } else {
-        this.jogos.push(this.form.value)
-          .then(() => {
-            loader.dismiss();
-            this.form.reset();
-          })
-          .catch(() => {
-            loader.dismiss();
-            let alert = this.alertCtrl.create({
-              title: 'Ops, algo deu errado',
-              subTitle: 'Não foi possível cadastrar.',
-              buttons: ['OK']
-            });
-            alert.present();
-          });
+        this.jogos.push(this.form.value).then(() => {
+          this.jogos.snapshotChanges().subscribe();
+          loader.dismiss();
+          this.form.reset();
+        }).cath(() => {
+          
+        });
       }
     });
   }
