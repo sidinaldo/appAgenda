@@ -86,8 +86,6 @@ export class CadastrarJogo {
           this.jogos.snapshotChanges().subscribe();
           loader.dismiss();
           this.form.reset();
-        }).cath(() => {
-          
         });
       }
     });

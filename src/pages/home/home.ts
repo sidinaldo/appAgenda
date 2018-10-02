@@ -5,6 +5,8 @@ import { AgendaPage } from '../agenda/agenda';
 import { CadastrarJogo } from '../jogo/cadastrar/cadastrarjogo';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { JogadorPage } from '../jogador/jogador';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 
 
@@ -18,9 +20,12 @@ export class HomePage {
   public profileTab: any;
   public user: string;
  
-  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth,) {
-    // this.tabHome = LoginPage;
-    // this.profileTab = LoginPage;
+  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private splashScreen: SplashScreen) {
+    splashScreen.show();
+    setTimeout(() => {
+      splashScreen.hide();
+    }, 3000);
+   
   }
 
   autentication(){
