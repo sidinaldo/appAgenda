@@ -13,10 +13,7 @@ export class CadastrarJogo {
   public form: FormGroup;
   public jogos: AngularFireList<any>;
   public user: string = '';
-  public jogador = {
-    nome: null,
-    gol: null
-  }
+ 
   constructor(
     private fb: FormBuilder,
     private loadingCtrl: LoadingController,
