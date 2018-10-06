@@ -14,12 +14,18 @@ import { AgendaPage } from '../pages/agenda/agenda';
 import { ConsultarJogo } from '../pages/jogo/consultar/consultarjogo';
 import { CadastrarJogo } from '../pages/jogo/cadastrar/cadastrarjogo';
 import { JogadorPage } from '../pages/jogador/jogador';
+import { SobrePage } from '../pages/sobre/sobre';
 
 
 
 export const environment = {
   firebase: {
-    
+    apiKey: "AIzaSyDdVX35nWwQzzYnD_9gYG4EHpTcqsvKJV4",
+    authDomain: "agenda-d0ed6.firebaseapp.com",
+    databaseURL: "https://agenda-d0ed6.firebaseio.com",
+    projectId: "agenda-d0ed6",
+    storageBucket: "agenda-d0ed6.appspot.com",
+    messagingSenderId: "382350095304"
   }
 };
 
@@ -31,7 +37,8 @@ export const environment = {
     AgendaPage,
     ConsultarJogo,
     CadastrarJogo,
-    JogadorPage
+    JogadorPage,
+    SobrePage
     
   ],
   imports: [
@@ -49,7 +56,8 @@ export const environment = {
     AgendaPage,
     ConsultarJogo,
     CadastrarJogo,
-    JogadorPage
+    JogadorPage,
+    SobrePage
   ],
   providers: [
     StatusBar,

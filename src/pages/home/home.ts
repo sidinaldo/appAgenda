@@ -3,10 +3,8 @@ import { NavController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { AgendaPage } from '../agenda/agenda';
 import { CadastrarJogo } from '../jogo/cadastrar/cadastrarjogo';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { JogadorPage } from '../jogador/jogador';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { SobrePage } from '../sobre/sobre';
 
 
 
@@ -16,29 +14,29 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 })
 export class HomePage {
 
-  public tabHome: any;
-  public profileTab: any;
   public user: string;
- 
-  constructor(public navCtrl: NavController, private afAuth: AngularFireAuth, private splashScreen: SplashScreen) {
-    splashScreen.show();
-    setTimeout(() => {
-      splashScreen.hide();
-    }, 3000);
-   
+  public color: string = "blue";
+  public profileTab: any;
+  public loginTab: any;
+
+  constructor(public navCtrl: NavController) {   
+    this.loginTab = LoginPage;
   }
 
-  autentication(){
+  autentication() {
     this.navCtrl.setRoot(LoginPage);
   }
 
-  agenda(){
+  agenda() {
     this.navCtrl.push(AgendaPage);
   }
-  cadastrarJogo(){
+  cadastrarJogo() {
     this.navCtrl.push(CadastrarJogo);
   }
-  cadastrarJogador(){
+  cadastrarJogador() {
     this.navCtrl.push(JogadorPage);
+  }
+  sobre() {
+    this.navCtrl.push(SobrePage);
   }
 }

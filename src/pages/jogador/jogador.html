@@ -5,6 +5,9 @@
 </ion-header>
 <ion-content padding class="auto-scroll">
   <ion-grid fixed>
+    <ion-row>
+      <ion-title text-center class="oleo-script">Cadastrar jogadores</ion-title>
+    </ion-row>
     <ion-row align-items-center justify-content-center>
       <ion-col col-12 col-sm-12 col-md-6>
         <form [formGroup]="form">
@@ -24,19 +27,19 @@
   </ion-grid>
 
   <ion-grid>
-    <ion-row col-12 col-sm class="linha" align-items-center justify-content-center>
-      <ion-col col-6 col-sm >
+    <ion-row col-12 col-sm class="header-grid" align-items-center justify-content-center>
+      <ion-col col-6 col-sm>
         Nome
       </ion-col>
-      <ion-col col-6 col-sm >
+      <ion-col col-6 col-sm>
         Posição
       </ion-col>
     </ion-row>
-    <ion-row col-12 col-sm *ngFor="let item of lista">
+    <ion-row col-12 col-sm *ngFor="let item of lista" class="list-grid">
       <ion-col col-16 col-sm>
         {{item.nome}}
       </ion-col>
-      <ion-col col-16 col-sm>
+      <ion-col col-16 col-sm align-items-center>
         {{item.posicao}}
       </ion-col>
     </ion-row>

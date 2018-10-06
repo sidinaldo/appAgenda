@@ -3,67 +3,45 @@
     <ion-title text-center class="oleo-script">Olho D'água Futebol Clube {{ user }}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="showSendPhoto()">
-        <ion-icon name="camera"></ion-icon>
+        <ion-icon name="football"></ion-icon>
       </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <br>
-<ion-content padding class="auto-scroll">
-  <ion-card>
-    <button ion-item clear large (click)="agenda()">
-      <ion-icon ios="ios-calendar" md="md-calendar" item-start></ion-icon>
-      Agenda
-    </button>
-  </ion-card>
-  <br>
-  <ion-card>
-    <button ion-item>
-      <ion-icon ios="ios-pie-outline" md="md-pie" item-start></ion-icon>
-      Desempenho
-    </button>
-  </ion-card>
-  <br>
-  <ion-card>
-    <button ion-item>
-      <ion-icon ios="ios-football" md="md-football" item-start></ion-icon>
-      Artilharia
-    </button>
-  </ion-card>
-  <br>
-  <ion-card>
-    <button ion-item>
-      <ion-icon ios="ios-construct-outline" md="md-construct" item-start></ion-icon>
-      Configuração
-    </button>
-  </ion-card>
-  <br>
-  <ion-card>
-    <button ion-item (click)="autentication()">
-      <ion-icon ios="ios-lock-outline" md="md-lock" item-start></ion-icon>
-      Login
-    </button>
-  </ion-card>
-  <br>
-  <ion-card>
-    <button ion-item (click)="cadastrarJogo()">
-      <ion-icon ios="ios-add-circle" md="md-add-circle" item-start></ion-icon>
-      Cadastrar Jogo
-    </button>    
-  </ion-card>
-  <br>
-  <ion-card>
-    <button ion-item (click)="cadastrarJogador()">
-      <ion-icon ios="ios-add-circle" md="md-person-add" item-start></ion-icon>
-      Cadastrar Jogador
-    </button>    
-  </ion-card>
+<ion-content padding class="auto-scroll" color="blue">
+  <ion-grid class="grid-basic-page">
+    <ion-row col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 justify-content-around>
+      <ion-col col-5 text-center class="col-grid" (click)="sobre()">
+        <ion-icon ios="ios-book" md="md-book" class="icon-size"></ion-icon>
+        <ion-title text-center>Sobre</ion-title>
+      </ion-col>
+      <ion-col col-5 (click)="agenda()" text-center class="col-grid">
+        <ion-icon ios="ios-albums" md="md-albums" class="icon-size"></ion-icon>
+        <ion-title text-center>Hitórico</ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row col-12 col-sm-9 col-md-6 col-lg-4 col-xl-3 justify-content-around>
+      <ion-col col-5 text-center class="col-grid">
+        <ion-icon ios="ios-pie-outline" md="md-pie" class="icon-size"></ion-icon>
+        <ion-title text-center>Desempenho</ion-title>
+      </ion-col>
+      <ion-col col-5 text-center class="col-grid">
+        <ion-icon ios="ios-football-outline" md="md-football" class="icon-size"></ion-icon>
+        <ion-title text-center>Artilharia</ion-title>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>
-<!-- <ion-content class="auto-scroll">
-  <ion-tabs>
-    <ion-tab tabIcon="water" tabTitle="Water" [root]="tab1"></ion-tab>
-    <ion-tab tabIcon="leaf" tabTitle="Life" [root]="tab2"></ion-tab>
-    <ion-tab tabIcon="flame" tabTitle="Fire" [root]="tab3"></ion-tab>
-    <ion-tab tabIcon="magnet" tabTitle="Force" [root]="tab4"></ion-tab>
-  </ion-tabs>`
-</ion-content> -->
+<ion-tabs [color]="color">
+  <ion-tab tabIcon="home" tabTitle="Home" ></ion-tab>
+  <ion-tab tabIcon="construct" tabTitle="Config"></ion-tab>
+  <ion-tab tabIcon="lock" tabTitle="Login" ></ion-tab>
+</ion-tabs>
+<!-- <ion-tabs [color]="color">
+  <ion-tab tabIcon="home" tabTitle="Home" [root]="tab1"></ion-tab>
+  <ion-tab tabIcon="leaf" tabTitle="Life" [root]="tab2"></ion-tab>
+  <ion-tab tabIcon="flame" tabTitle="Fire" [root]="tab3"></ion-tab>
+  <ion-tab tabIcon="lock" tabTitle="Login" [root]="tab4"></ion-tab>
+</ion-tabs> -->

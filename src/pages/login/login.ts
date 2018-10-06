@@ -3,6 +3,7 @@ import { LoadingController, NavController, AlertController } from 'ionic-angular
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { HomePage } from '../home/home';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { SplashScreen } from '@ionic-native/splash-screen';
 
 @Component({
   selector: 'page-login',
@@ -16,7 +17,9 @@ export class LoginPage {
     private afAuth: AngularFireAuth,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    private alertCtrl: AlertController) {
+    private alertCtrl: AlertController,
+    private splashScreen: SplashScreen
+    ) {
     this.form = this.fb.group({
       email: ['', Validators.compose([
         Validators.minLength(5),
@@ -29,7 +32,14 @@ export class LoginPage {
         Validators.required
       ])]
     });
+    let loader = this.loadingCtrl.create({ content: "Carregando..." });
+    loader.present();
 
+    setTimeout(() => {
+      loader.dismiss();
+    }, 4000);
+
+    
     // afAuth.authState.subscribe(user => {
     //   if (user) {
     //     this.navCtrl.setRoot(HomePage);

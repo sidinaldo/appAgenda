@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Oleo+Script|Fira+Sans:300');
+
 ion-content {
   font-family: 'Fira Sans', sans-serif;
 }
@@ -48,6 +49,7 @@ page-signup {
     color: #999999 !important;
     margin-bottom: 10px;
   }
+
   ion-input,
   ion-button {
     font-size: 0.8em !important;
@@ -56,24 +58,63 @@ page-signup {
 
 .escudo-size {
   width: 40%;
-  height: auto; 
+  height: auto;
 }
 
-.tabbar{
+.tabbar {
   opacity: 1;
 }
 
-.linha {
-    background-color: #f0f5ff;
-    border: 1px solid #e6e9ee;
-    border-radius: 2px;
-    padding: 5px;
-    text-align: center;  
+.header-grid {
+  background-color: #f0f5ff;
+  border: 1px solid #e6e9ee;
+  border-radius: 2px;
+  padding: 5px;
+  text-align: center;
 }
 
-ion-row:nth-child(n){
-  border-bottom: 1px solid #224c94;
-  
+.list-grid ion-col {
+  border-bottom: solid 1px #999999;
+}
+
+.menu-list {
+  color: #fff;
+  background-color: #1e1e79;
+  display: block;
+}
+
+.col-grid {
+  background: #1678E0;
+  color: #dbdbdb;
+  box-shadow: 5px 10px 8px #888888;
+  height: 100px;
+}
+
+.col-grid .toolbar-title {
+  color: #FAFAFA
+}
+
+.icon-size {
+  display: inline-block;
+  font-size: 4.2em;
+  color: #FAFAFA;
+  text-align: center;
+
 }
 
 
+.grid-basic-page {
+  ion-row {
+    margin-bottom: 14px;
+
+    ion-col {
+      border-radius: 6px;
+      padding: 5px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 700px;
+    }
+  }
+
+}
