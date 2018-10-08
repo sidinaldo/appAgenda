@@ -15,6 +15,7 @@ import { ConsultarJogo } from '../pages/jogo/consultar/consultarjogo';
 import { CadastrarJogo } from '../pages/jogo/cadastrar/cadastrarjogo';
 import { JogadorPage } from '../pages/jogador/jogador';
 import { SobrePage } from '../pages/sobre/sobre';
+import { TabsPage } from '../components/tabs/tabs';
 
 
 
@@ -38,7 +39,8 @@ export const environment = {
     ConsultarJogo,
     CadastrarJogo,
     JogadorPage,
-    SobrePage
+    SobrePage,
+    TabsPage
     
   ],
   imports: [
@@ -57,7 +59,8 @@ export const environment = {
     ConsultarJogo,
     CadastrarJogo,
     JogadorPage,
-    SobrePage
+    SobrePage,
+    TabsPage
   ],
   providers: [
     StatusBar,

@@ -14,6 +14,9 @@ export class JogadorPage {
   public form: FormGroup;
   public lista: any;
   public jogadores: AngularFireList<any>;
+  public ativo: boolean;
+  public blue: "blue";
+
 
   constructor(
     private fb: FormBuilder,
@@ -30,10 +33,11 @@ export class JogadorPage {
         Validators.required
       ])],
       posicao: ['', Validators.compose([
-        Validators.minLength(6),
+        Validators.minLength(4),
         Validators.maxLength(20),
         Validators.required
-      ])]
+      ])],
+      ativo: [false]
     });
 
     this.consultar();
