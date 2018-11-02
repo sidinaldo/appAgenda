@@ -13,7 +13,7 @@ export class JogadorService {
     criarJogador(jogador: any) {
         var token = localStorage.getItem('mws.token');
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append('x-access-token', token); Headers
+        headers.append('x-access-token', token); 
         let options = new RequestOptions({ headers: headers });
 
         // let data = this.formatarData(jogador.dataNascimento);

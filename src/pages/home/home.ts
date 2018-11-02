@@ -5,6 +5,7 @@ import { AgendaPage } from '../agenda/agenda';
 import { CadastrarJogo } from '../jogo/cadastrar/cadastrarjogo';
 import { JogadorPage } from '../jogador/jogador';
 import { SobrePage } from '../sobre/sobre';
+import { HistoricoPage } from '../historico/historico';
 
 
 
@@ -38,5 +39,9 @@ export class HomePage {
   }
   sobre() {
     this.navCtrl.push(SobrePage);
+  }
+
+  historico(){
+    this.navCtrl.push(HistoricoPage);
   }
 }
