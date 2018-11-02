@@ -19,6 +19,7 @@ import { JogadorPage } from '../pages/jogador/jogador';
 import { SobrePage } from '../pages/sobre/sobre';
 import { TabsPage } from '../components/tabs/tabs';
 import { HistoricoPage } from '../pages/historico/historico';
+import { TemporadaPage } from '../pages/temporada/temporada';
 
 
 export const environment = {
@@ -43,6 +44,7 @@ export const environment = {
     JogadorPage,
     SobrePage,
     HistoricoPage,
+    TemporadaPage,
     TabsPage
     
   ],
@@ -65,6 +67,7 @@ export const environment = {
     JogadorPage,
     SobrePage,
     HistoricoPage,
+    TemporadaPage,
     TabsPage
   ],
   providers: [

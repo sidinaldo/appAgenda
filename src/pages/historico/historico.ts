@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, AlertController, Thumbnail } from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { LoadingController, NavController } from 'ionic-angular';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
+import { TemporadaPage } from '../temporada/temporada';
 
 @Component({
   selector: 'page-historico',
@@ -15,8 +15,6 @@ export class HistoricoPage {
   constructor(
     public navCtrl: NavController,
     private loadingCtrl: LoadingController,
-    private db: AngularFireDatabase,
-    private alertCtrl: AlertController,
     private http: Http
   ) {
     var d = new Date();
@@ -37,6 +35,7 @@ export class HistoricoPage {
     this.http.get(environment.serviceUrl + 'jogos', options).subscribe(data => {
       this.formataAno(data.json());
       this.jogos = data.json();
+      console.log(data.json());
       loader.dismiss();
     }, error => {
       console.log(error);
@@ -45,16 +44,18 @@ export class HistoricoPage {
   }
 
   formataAno(lista: Array<any>) {
-    let jogo = lista.filter(item => {
-      let ano = new Date(item.dataJogo).getFullYear();
-      return this.anos.map(element => {
-        return ano == element.ano;
+    lista.forEach(jogo => {
+      this.anos.filter(item => {
+        var formtDate = jogo.dataJogo.replace("-", "/");
+        let anoJogo = new Date(formtDate).getFullYear();
+        if (item.ano == anoJogo)
+          item.jogos.push(jogo);
       });
     });
-    this.anos.push()
-    console.log(this.anos);
-    console.log(jogo);
+    console.log(this.anos)
+  }
 
-
+  temporada(item: any){
+    this.navCtrl.push(TemporadaPage, {ano: item.ano});
   }
 }

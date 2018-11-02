@@ -1,22 +1,46 @@
-<ion-header>
+<ion-header>  
+  <ion-toolbar color="blue">
+    <ion-title text-center class="oleo-script">Olho D'água Futebol Clube {{ user }}</ion-title>
+  </ion-toolbar>
   <ion-navbar>
     <ion-title>Voltar</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="auto-scroll">
+<ion-content padding class="auto-scroll" >
   <ion-grid fixed>
     <ion-row align-items-center justify-content-center *ngFor="let item of anos">
-      <ion-card>
-        <img src="img/nin-live.png"/>
-        <ion-card-content>
-          <ion-card-title>
-            Temporada {{item}}
-            </ion-card-title>
-          <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
-          </p>
+      <ion-card *ngIf="item.jogos.length > 0" >
+        <ion-card-content (click)="temporada(item)">
+          <ion-card-title text-center>
+            Temporada {{item.ano}}
+          </ion-card-title>
+          <ion-item>
+            <ion-icon name='football' item-start style="color: #3897f0"></ion-icon>
+            Jogos
+            <ion-badge item-end>{{item.jogos.length}}</ion-badge>
+          </ion-item>
+
+          <ion-item>
+            <ion-icon name='checkmark-circle' item-start style="color: #2ec95c"></ion-icon>
+            Vitórias
+            <ion-badge item-end>23</ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-icon name='checkmark-circle' item-start style="color: #b54646"></ion-icon>
+            Derrotas
+            <ion-badge item-end>8</ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-icon name='information-circle' item-start style="color: #e6820b"></ion-icon>
+            Empates
+            <ion-badge item-end>7</ion-badge>
+          </ion-item>
+          <ion-item>
+            <ion-icon name='body' item-start style="color: #3897f0"></ion-icon>
+            Artilheiro
+            <ion-badge item-end>23</ion-badge>
+          </ion-item>
         </ion-card-content>
       </ion-card>
     </ion-row>
