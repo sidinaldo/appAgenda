@@ -1,33 +1,39 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, NavParams } from 'ionic-angular';
-import { Http, RequestOptions, Headers } from '@angular/http';
-import { environment } from '../../environments/environment';
+import { LoadingController, NavController, NavParams, ModalController } from 'ionic-angular';
+import { ConsultarJogo } from '../jogo/consultar/consultarjogo';
+
 
 @Component({
   selector: 'page-temporada',
   templateUrl: 'temporada.html'
 })
 export class TemporadaPage {
-  public jogos: any;
-  public anos: Array<any> = [];
   public lista: any;
+  public resultado: string;
   constructor(
     public navCtrl: NavController,
     private loadingCtrl: LoadingController,
-    private http: Http,
-    public navParams: NavParams
-  ) { 
+    public navParams: NavParams,
+    public modalCtrl: ModalController
+  ) {
     let loader = this.loadingCtrl.create({ content: "Carregando jogos..." });
     loader.present();
-    let ano = navParams.get("ano");
+    this.lista = navParams.get("ano");
+    loader.dismiss();
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-    this.http.get(environment.serviceUrl + 'jogos/ano/' + ano, options).subscribe(data => {
-      this.jogos = data.json();
-      loader.dismiss();
-    }, error => {
-      loader.dismiss();
-    });
+    console.log(this.lista)
+    console.log(this.resultado)
+  }
+
+  getColor(jogo) {
+    if (jogo.golsMandante > jogo.golsVisitante)
+      return "#2ec95c";
+
+    if (jogo.golsMandante < jogo.golsVisitante)
+      return "#b54646";
+
+    if (jogo.golsMandante == jogo.golsVisitante)
+      return "#e6820b";
+
   }
 }

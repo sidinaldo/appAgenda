@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, NavParams, AlertController } from 'ionic-angular';
+import { LoadingController, NavController, NavParams } from 'ionic-angular';
 
 
 @Component({
@@ -12,7 +12,6 @@ export class ConsultarJogo {
     private loadingCtrl: LoadingController,
     public navParams: NavParams
     ) { 
-      console.log(navParams);
-      this.firstParam = navParams.data;
+      
     } 
 }

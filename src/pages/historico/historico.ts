@@ -35,7 +35,6 @@ export class HistoricoPage {
     this.http.get(environment.serviceUrl + 'jogos', options).subscribe(data => {
       this.formataAno(data.json());
       this.jogos = data.json();
-      console.log(data.json());
       loader.dismiss();
     }, error => {
       console.log(error);
@@ -52,10 +51,9 @@ export class HistoricoPage {
           item.jogos.push(jogo);
       });
     });
-    console.log(this.anos)
   }
 
   temporada(item: any){
-    this.navCtrl.push(TemporadaPage, {ano: item.ano});
+    this.navCtrl.push(TemporadaPage, {ano: item});
   }
 }
