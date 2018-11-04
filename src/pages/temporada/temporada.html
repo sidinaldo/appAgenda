@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content padding class="auto-scroll">
-  <ion-list>
-    <button ion-item clear full *ngFor="let item of lista.jogos">
+  <ion-list *ngFor="let item of lista.jogos" >
+    <button ion-item clear full (click)="getJogo(item)">
       <ion-icon name='football' item-start [ngStyle]="{'color':getColor(item)}"></ion-icon>
       {{item.mandante.nome}} {{item.golsMandante}} x {{item.golsVisitante}} {{item.visitante.nome}}
       <ion-icon name='arrow-forward' item-end></ion-icon>

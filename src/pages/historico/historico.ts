@@ -3,37 +3,34 @@ import { LoadingController, NavController } from 'ionic-angular';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
 import { TemporadaPage } from '../temporada/temporada';
+import { ConsultarJogo } from '../jogo/consultar/consultarjogo';
 
 @Component({
   selector: 'page-historico',
   templateUrl: 'historico.html'
 })
 export class HistoricoPage {
-  public jogos: any;
+  public jogos: Array<any>;
+  public listFilter: any;
   public anos: Array<any> = [];
-  public lista: any;
   constructor(
     public navCtrl: NavController,
     private loadingCtrl: LoadingController,
     private http: Http
   ) {
+
+
     var d = new Date();
     var anoAtual = d.getFullYear()
     for (let ano = 2009; ano <= anoAtual; ano++) {
-      let obj = { ano: ano, jogos: [] }
-      this.anos.push(obj);
+      //let obj = { ano: ano, jogos: [] }
+      this.anos.push(ano);
     }
     let loader = this.loadingCtrl.create({ content: "Carregando jogos..." });
     loader.present();
-    this.getJogos(loader);
-
-  }
-
-  getJogos(loader) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     this.http.get(environment.serviceUrl + 'jogos', options).subscribe(data => {
-      this.formataAno(data.json());
       this.jogos = data.json();
       loader.dismiss();
     }, error => {
@@ -42,18 +39,25 @@ export class HistoricoPage {
     });
   }
 
-  formataAno(lista: Array<any>) {
-    lista.forEach(jogo => {
-      this.anos.filter(item => {
-        var formtDate = jogo.dataJogo.replace("-", "/");
-        let anoJogo = new Date(formtDate).getFullYear();
-        if (item.ano == anoJogo)
-          item.jogos.push(jogo);
-      });
-    });
+  onSelectChange(selectedValue: any) {
+    this.listFilter = this.jogos.filter(jogo => {
+      var formtDate = jogo.dataJogo.replace("-", "/");
+      let anoJogo = new Date(formtDate).getFullYear();
+      return anoJogo == selectedValue;
+    })
   }
 
-  temporada(item: any){
-    this.navCtrl.push(TemporadaPage, {ano: item});
+  getColor(jogo) {
+    if (jogo.golsMandante > jogo.golsVisitante)
+      return "#2ec95c";
+
+    if (jogo.golsMandante < jogo.golsVisitante)
+      return "#b54646";
+
+    if (jogo.golsMandante == jogo.golsVisitante)
+      return "#e6820b";
+  }
+  getJogo(jogo: any) {
+    this.navCtrl.push(ConsultarJogo, { jogo: jogo });
   }
 }

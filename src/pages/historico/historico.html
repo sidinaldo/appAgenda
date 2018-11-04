@@ -1,4 +1,4 @@
-<ion-header>  
+<ion-header>
   <ion-toolbar color="blue">
     <ion-title text-center class="oleo-script">Olho D'água Futebol Clube {{ user }}</ion-title>
   </ion-toolbar>
@@ -7,10 +7,33 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="auto-scroll" >
-  <ion-grid fixed>
+<ion-content padding class="auto-scroll">
+  <ion-item>
+    <ion-label class="oleo-script">Selecione um ano</ion-label>
+    <ion-select [(ngModel)]="listAno" interface="popover" (ionChange)="onSelectChange($event)">
+      <ion-option *ngFor="let ano of anos" [value]="ano">{{ano}} </ion-option>
+    </ion-select>
+  </ion-item>
+
+
+  <ion-list *ngFor="let item of listFilter">
+    <button ion-item clear full (click)="getJogo(item)">
+      <ion-icon name='football' item-start [ngStyle]="{'color':getColor(item)}"></ion-icon>
+      {{item.mandante.nome}} {{item.golsMandante}} x {{item.golsVisitante}} {{item.visitante.nome}}
+      <ion-icon name='arrow-forward' item-end></ion-icon>
+    </button>
+  </ion-list>
+
+
+
+
+
+
+
+
+  <!-- <ion-grid fixed>
     <ion-row align-items-center justify-content-center *ngFor="let item of anos">
-      <ion-card *ngIf="item.jogos.length > 0" >
+      <ion-card *ngIf="item.jogos.length > 0">
         <ion-card-content (click)="temporada(item)">
           <ion-card-title text-center>
             Temporada {{item.ano}}
@@ -44,5 +67,5 @@
         </ion-card-content>
       </ion-card>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
 </ion-content>

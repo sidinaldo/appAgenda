@@ -7,11 +7,16 @@ import { LoadingController, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'consultarjogo.html'
 })
 export class ConsultarJogo {
-  public firstParam;
+  public jogo;
   constructor(
     private loadingCtrl: LoadingController,
     public navParams: NavParams
-    ) { 
-      
-    } 
+  ) {
+
+    let loader = this.loadingCtrl.create({ content: "Carregando jogos..." });
+    loader.present();
+    this.jogo = navParams.get("jogo");
+    loader.dismiss();
+    console.log(this.jogo)
+  }
 }

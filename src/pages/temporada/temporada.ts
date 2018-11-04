@@ -20,9 +20,6 @@ export class TemporadaPage {
     loader.present();
     this.lista = navParams.get("ano");
     loader.dismiss();
-
-    console.log(this.lista)
-    console.log(this.resultado)
   }
 
   getColor(jogo) {
@@ -34,6 +31,8 @@ export class TemporadaPage {
 
     if (jogo.golsMandante == jogo.golsVisitante)
       return "#e6820b";
-
+  }
+  getJogo(jogo: any){
+    this.navCtrl.push(ConsultarJogo, { jogo: jogo });
   }
 }
