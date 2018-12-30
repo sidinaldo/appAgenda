@@ -24,12 +24,7 @@ import { TemporadaPage } from '../pages/temporada/temporada';
 
 export const environment = {
   firebase: {
-    apiKey: "AIzaSyDdVX35nWwQzzYnD_9gYG4EHpTcqsvKJV4",
-    authDomain: "agenda-d0ed6.firebaseapp.com",
-    databaseURL: "https://agenda-d0ed6.firebaseio.com",
-    projectId: "agenda-d0ed6",
-    storageBucket: "agenda-d0ed6.appspot.com",
-    messagingSenderId: "382350095304"
+    ...
   }
 };
 
